@@ -272,8 +272,7 @@ class FluentLogger extends BaseLogger
         );
 
         if (!$socket) {
-            $errors = error_get_last();
-            throw new \Exception($errors['message']);
+            throw new \Exception(sprintf('Error while trying to connect to fluentd: code %d - %s', $errno, $errstr));
         }
 
         // set read / write timeout.
